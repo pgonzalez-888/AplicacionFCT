@@ -9,16 +9,16 @@ public interface UsuarioService {
 
 	public Boolean login(String nombreUsuario, String password);
 
-	public boolean cambiarContrasena(String nuevaContrasena, String usuarioLogado);
+	public Boolean cambiarContrasena(String nuevaContrasena, String usuarioLogado);
 
 	public Alumno obtenerDatosAlumno(String usuarioLogado);
 
 	public List<RegistroPractica> consultarRegistros(String usuarioLogado, String fechaDesde, String fechaHasta,
 			String filtro);
 
-	public boolean altaRegistroPractica(String usuarioLogado, int fechaId, double horas, String detalle);
+	public Boolean altaRegistroPractica(String usuarioLogado, Integer fechaId, Integer horas, String detalle);
 
-	public boolean borrarRegistroPractica(int registroId, String usuarioLogado);
+	public Boolean borrarRegistroPractica(Integer registroId, String usuarioLogado);
 
 	public void cerrarSesion();
 

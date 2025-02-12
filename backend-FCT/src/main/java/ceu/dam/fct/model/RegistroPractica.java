@@ -13,7 +13,7 @@ import lombok.Data;
 public class RegistroPractica {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int id;
+	private Integer id;
 
 	@ManyToOne
 	@JoinColumn(name = "alumno_id")
@@ -23,7 +23,7 @@ public class RegistroPractica {
 	@JoinColumn(name = "fecha_id")
 	private Fecha fecha; // Relación con Fecha
 
-	private int horas;
+	private Integer horas;
 	private String descripcion;
 
 }

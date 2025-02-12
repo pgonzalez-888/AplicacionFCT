@@ -14,10 +14,10 @@ import lombok.Data;
 public class Fecha {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int id;
+	private Integer id;
 
 	private java.util.Date fecha;
-	private int anioCurso;
+	private Integer anioCurso;
 	private String evaluacion; // Septiembre, Marzo
 
 	@OneToMany(mappedBy = "fecha")

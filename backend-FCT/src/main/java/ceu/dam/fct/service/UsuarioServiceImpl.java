@@ -11,6 +11,10 @@ import ceu.dam.fct.model.Alumno;
 import ceu.dam.fct.model.Fecha;
 import ceu.dam.fct.model.RegistroPractica;
 import ceu.dam.fct.model.Usuario;
+import ceu.dam.fct.repository.AlumnoRepository;
+import ceu.dam.fct.repository.FechaRepository;
+import ceu.dam.fct.repository.RegistroPracticaRepository;
+import ceu.dam.fct.repository.UsuarioRepository;
 
 @Service
 public class UsuarioServiceImpl implements UsuarioService {
@@ -33,7 +37,7 @@ public class UsuarioServiceImpl implements UsuarioService {
 	private Usuario usuarioLogado;
 
 	@Override
-	public boolean login(String nombreUsuario, String contrasena) {
+	public Boolean login(String nombreUsuario, String contrasena) {
 		// Validar que el usuario exista y esté asociado a un alumno
 		Optional<Usuario> usuarioOpt = usuarioRepository.findByNombreUsuario(nombreUsuario);
 		if (usuarioOpt.isPresent()) {
@@ -47,7 +51,7 @@ public class UsuarioServiceImpl implements UsuarioService {
 	}
 
 	@Override
-	public boolean cambiarContrasena(String nuevaContrasena, String usuarioLogado) {
+	public Boolean cambiarContrasena(String nuevaContrasena, String usuarioLogado) {
 		if (nuevaContrasena.length() < 8) {
 			return false; // Verificar que la nueva contraseña tenga al menos 8 caracteres
 		}
@@ -70,7 +74,7 @@ public class UsuarioServiceImpl implements UsuarioService {
 	}
 
 	@Override
-	public boolean altaRegistroPractica(String usuarioLogado, int fechaId, double horas, String detalle) {
+	public Boolean altaRegistroPractica(String usuarioLogado, Integer fechaId, Integer horas, String detalle) {
 		Alumno alumno = obtenerDatosAlumno(usuarioLogado);
 		Fecha fecha = fechaRepository.findById(fechaId).get();
 
@@ -89,7 +93,7 @@ public class UsuarioServiceImpl implements UsuarioService {
 	}
 
 	@Override
-	public boolean borrarRegistroPractica(int registroId, String usuarioLogado) {
+	public Boolean borrarRegistroPractica(Integer registroId, String usuarioLogado) {
 		RegistroPractica registro = registroPracticaRepository.findById(registroId).get();
 		if (registro != null) {
 			registroPracticaRepository.delete(registro);

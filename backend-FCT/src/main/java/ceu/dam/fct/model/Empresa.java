@@ -14,13 +14,13 @@ import lombok.Data;
 public class Empresa {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int id;
+	private Integer id;
 
 	private String nombreEmpresa;
 	private String tutorLaboral;
 	private String emailTutorLaboral;
 	private String telefonoTutorLaboral;
-	private boolean activo;
+	private Boolean activo;
 
 	@OneToMany(mappedBy = "empresa")
 	private List<Alumno> alumnos;

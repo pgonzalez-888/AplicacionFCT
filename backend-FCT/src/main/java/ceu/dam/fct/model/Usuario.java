@@ -14,7 +14,7 @@ public class Usuario {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int id;
+	private Integer id;
 
 	private String nombreUsuario;
 	private String contrasena;
@@ -24,6 +24,6 @@ public class Usuario {
 	@JoinColumn(name = "alumno_id")
 	private Alumno usuarioAsociado; // Relación con Alumno
 
-	private boolean activo;
+	private Boolean activo;
 
 }

@@ -14,7 +14,7 @@ import lombok.Data;
 public class Alumno extends Perfil {
 	private String ciclo; // DAM, DAW, ASIR
 	private String evaluacion; // Septiembre, Marzo
-	private int anioCurso;
+	private Integer anioCurso;
 
 	@ManyToOne
 	@JoinColumn(name = "tutor_docente_id")
