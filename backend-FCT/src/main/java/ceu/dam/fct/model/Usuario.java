@@ -6,10 +6,10 @@ import lombok.Data;
 @Entity
 @Data
 public class Usuario {
-	private Long id;
+	private Integer id;
 	private String nombreUsuario;
 	private String password;
-	private Perfil perfil;
+	private String perfil;
 	private Perfil asociado;
 	private Boolean activo;
 	
