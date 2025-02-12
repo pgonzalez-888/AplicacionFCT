@@ -5,25 +5,25 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
-import jakarta.persistence.OneToOne;
+import jakarta.persistence.ManyToOne;
 import lombok.Data;
 
 @Entity
 @Data
-public class Usuario {
-
+public class RegistroPractica {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 
-	private String nombreUsuario;
-	private String contrasena;
-	private String perfil; // Alumno, Tutor
-
-	@OneToOne
+	@ManyToOne
 	@JoinColumn(name = "alumno_id")
-	private Alumno usuarioAsociado; // Relación con Alumno
+	private Alumno alumno; // Relación con Alumno
 
-	private boolean activo;
+	@ManyToOne
+	@JoinColumn(name = "fecha_id")
+	private Fecha fecha; // Relación con Fecha
+
+	private int horas;
+	private String descripcion;
 
 }
