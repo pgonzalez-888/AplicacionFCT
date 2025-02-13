@@ -10,7 +10,7 @@ import ceu.dam.fct.model.Fecha;
 import ceu.dam.fct.model.RegistroPractica;
 
 @Repository
-public interface RegistroPracticaRepository extends JpaRepository<RegistroPractica, Integer> {
+public interface RegistroPracticaRepository extends JpaRepository<RegistroPractica, Long> {
 
 	public List<RegistroPractica> findRegistrosByAlumno(Alumno alumno, String fechaDesde, String fechaHasta, String filtro);
 
