@@ -4,10 +4,11 @@ import java.util.List;
 
 import ceu.dam.fct.model.Alumno;
 import ceu.dam.fct.model.RegistroPractica;
+import ceu.dam.fct.model.Usuario;
 
 public interface UsuarioService {
 
-	public Boolean login(String nombreUsuario, String password);
+	public Usuario login(String nombreUsuario, String password);
 
 	public Boolean cambiarContrasena(String nuevaContrasena, String usuarioLogado);
 
