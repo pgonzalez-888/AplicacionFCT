@@ -6,6 +6,6 @@ import org.springframework.stereotype.Repository;
 import ceu.dam.fct.model.Fecha;
 
 @Repository
-public interface FechaRepository extends JpaRepository<Fecha, Integer> {
+public interface FechaRepository extends JpaRepository<Fecha, Long> {
 
 }

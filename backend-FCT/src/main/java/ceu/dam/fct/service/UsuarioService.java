@@ -4,24 +4,24 @@ import java.util.List;
 
 import ceu.dam.fct.model.Alumno;
 import ceu.dam.fct.model.RegistroPractica;
+import ceu.dam.fct.model.Usuario;
 
 public interface UsuarioService {
 
-	public Boolean login(String nombreUsuario, String password);
+	public Usuario login(String nombreUsuario, String contrasena) throws UserNotFoundException, UserUnauthorizedException;
 
-	public Boolean cambiarContrasena(String nuevaContrasena, String usuarioLogado);
+	public void cambiarContrasena(Long usuarioId, String antiguaContrasena, String nuevaContrasena)
+			throws PasswordChangeException, UserUnauthorizedException, UserNotFoundException;
 
-	public Alumno obtenerDatosAlumno(String usuarioLogado);
+	public Alumno obtenerDatosAlumno(Long usuarioId) throws UserNotFoundException;
 
-	public List<RegistroPractica> consultarRegistros(String usuarioLogado, String fechaDesde, String fechaHasta,
-			String filtro);
+	public List<RegistroPractica> consultarRegistros(Long usuarioId, String fechaDesde, String fechaHasta, String filtro)
+			throws UserNotFoundException;
 
-	public Boolean altaRegistroPractica(String usuarioLogado, Integer fechaId, Integer horas, String detalle);
+	public void altaRegistroPractica(Long usuarioId, Long fechaId, Integer horas, String detalle)
+			throws UserNotFoundException, FechaNoDisponibleException;
 
-	public Boolean borrarRegistroPractica(Integer registroId, String usuarioLogado);
+	public void borrarRegistroPractica(Long usuarioId, Long registroId) throws UserNotFoundException, RegistroNoEncontradoException;
 
-	public void cerrarSesion();
-
-	public void salir();
 
 }
