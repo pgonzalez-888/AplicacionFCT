@@ -1,5 +1,8 @@
 package ceu.dam.fct.service;
 
+import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Optional;
 
@@ -114,7 +117,7 @@ public class UsuarioServiceImpl implements UsuarioService {
 	}
 
 	@Override
-	public List<RegistroPractica> consultarRegistros(Long usuarioId, String fechaDesde, String fechaHasta,
+	public List<RegistroPractica> consultarRegistros(Long usuarioId, LocalDate fechaDesde, LocalDate fechaHasta,
 			String filtro) throws UserNotFoundException {
 		log.debug("Consultando registros para el usuario con ID: " + usuarioId);
 
@@ -132,8 +135,33 @@ public class UsuarioServiceImpl implements UsuarioService {
 			throw new UserNotFoundException("No se encontró un alumno asociado a este usuario");
 		}
 
-		List<RegistroPractica> registros = registroPracticaRepository.findRegistrosByAlumno(alumno, fechaDesde,
-				fechaHasta, filtro);
+		List<RegistroPractica> registros = new ArrayList<>();
+		switch (filtro) {
+        case "completas":
+            // Fechas completas: buscar los registros que existan dentro del rango y esten registrados a este alumno
+            registros = registroPracticaRepository.findByAlumnoAndFecha_FechaBetween(alumno, fechaDesde, fechaHasta);
+            break;
+
+        case "sin_completar":
+            // Fechas sin completar: buscar aquellos registros que no hayan sido registrados a este alumno dentro del rango            
+        	List<RegistroPractica> registrosSinFiltrar = registroPracticaRepository.findByFecha_FechaBetween(fechaDesde, fechaHasta);
+        	
+        	
+        	for (RegistroPractica registroPractica : registrosSinFiltrar) {
+				if(!registroPracticaRepository.existsByAlumnoAndFecha(alumno, registroPractica.getFecha())) {
+					registros.add(registroPractica);
+				}
+			}
+        	
+        	
+            break;
+
+        case "todas":
+        default:
+            // Todas las fechas: buscar todos los registros en el rango sin filtro adicional
+            registros = registroPracticaRepository.findByFecha_FechaBetween(fechaDesde, fechaHasta);
+            break;
+    }
 
 		log.info("Registros obtenidos con éxito para el usuario con ID " + usuarioId);
 		return registros;
