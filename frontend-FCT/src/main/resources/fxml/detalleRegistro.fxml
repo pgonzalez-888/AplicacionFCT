@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <Label layoutX="104.0" layoutY="41.0" prefHeight="59.0" prefWidth="398.0" style="-fx-background-color: white; -fx-background-radius: 30; -fx-alignment: center;" text="Detalle del registro" textFill="#0092d2">
+         <font>
+            <Font name="System Bold Italic" size="24.0" />
+         </font>
+      </Label>
+      <Label layoutX="109.0" layoutY="113.0" prefHeight="35.0" prefWidth="86.0" text="Nº Horas:" textFill="#242729">
+         <font>
+            <Font name="System Italic" size="18.0" />
+         </font>
+      </Label>
+      <Label layoutX="305.0" layoutY="114.0" prefHeight="35.0" prefWidth="86.0" text="Fecha:" textFill="#242729">
+         <font>
+            <Font name="System Italic" size="18.0" />
+         </font>
+      </Label>
+      <Label fx:id="fechaRegistroLbl" layoutX="366.0" layoutY="118.0" prefHeight="27.0" prefWidth="134.0" style="-fx-text-fill: #FFC107; -fx-background-color: white; -fx-background-radius: 30; -fx-alignment: center; -fx-border-radius: 30;">
+         <font>
+            <Font name="System Bold Italic" size="18.0" />
+         </font>
+      </Label>
+      <Label fx:id="numeroHorasLbl" layoutX="195.0" layoutY="118.0" prefHeight="27.0" prefWidth="104.0" style="-fx-text-fill: #FFC107; -fx-background-color: white; -fx-background-radius: 30; -fx-alignment: center; -fx-border-radius: 30;">
+         <font>
+            <Font name="System Bold Italic" size="18.0" />
+         </font>
+      </Label>
+      <Label fx:id="descripcionLbl" layoutX="100.0" layoutY="177.0" prefHeight="159.0" prefWidth="398.0" style="-fx-text-fill: #FFC107; -fx-background-color: white; -fx-background-radius: 30; -fx-alignment: center; -fx-border-radius: 30;">
+         <font>
+            <Font name="System Bold Italic" size="18.0" />
+         </font>
+      </Label>
+      <Button fx:id="btnBorrarRegistro" layoutX="228.0" layoutY="349.0" mnemonicParsing="false" onAction="#borrarRegistro" prefHeight="25.0" prefWidth="142.0" style="-fx-background-color: #d6543a; -fx-border-radius: 30; -fx-border-width: 2; -fx-background-radius: 30;" text="Borrar Registro" textAlignment="CENTER" />
+      <Label layoutX="104.0" layoutY="145.0" prefHeight="35.0" prefWidth="125.0" text="Descripción:" textFill="#242729" underline="true">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Label>
+      <ImageView fitHeight="43.0" fitWidth="40.0" layoutX="148.0" layoutY="49.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../img/informeLbl.png" />
+         </image>
+      </ImageView>
+      <Button layoutX="564.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="33.0" style="-fx-background-color: transparent;" text="X" textFill="#d6543a">
+         <font>
+            <Font name="System Bold" size="18.0" />
+         </font>
+      </Button>
+   </children>
+</Pane>

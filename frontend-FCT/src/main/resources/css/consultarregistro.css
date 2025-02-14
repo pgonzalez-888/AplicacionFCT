@@ -1,0 +1,13 @@
+.table-view {
+    -fx-background-color: white;
+    -fx-border-radius: 15px;
+}
+
+.table-row-cell {
+    -fx-border-color: #00AEEF; /* Bordes azules */
+    -fx-border-width: 0 0 1 0;
+}
+
+.table-column {
+    -fx-alignment: CENTER;
+}
