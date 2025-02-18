@@ -16,5 +16,10 @@
 		<artifactId>javafx-fxml</artifactId>
 		<version>16</version>
 	</dependency>
+	<dependency>
+	<groupId>ceu.dam.ad</groupId>
+    <artifactId>fct-cliente-api</artifactId>
+    <version>v0</version>
+	</dependency>
 </dependencies>
 </project>
