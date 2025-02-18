@@ -8,7 +8,7 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="653.0" prefWidth="897.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="653.0" prefWidth="897.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ceu.dam.javafx.proyectofct.gui.ConsultarRegistroController">
    <children>
       <TextField fx:id="fechaDesdeTf" layoutX="69.0" layoutY="43.0" prefHeight="33.0" prefWidth="209.0" promptText="Fecha desde" style="-fx-background-color: transparent; -fx-border-color: transparent transparent #2196F3 transparent;" />
       <TextField fx:id="fechaHastaTf" layoutX="69.0" layoutY="91.0" prefHeight="33.0" prefWidth="209.0" promptText="Fecha hasta" style="-fx-background-color: transparent; -fx-border-color: transparent transparent #2196F3 transparent;" />
