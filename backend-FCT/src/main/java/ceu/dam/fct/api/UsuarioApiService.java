@@ -1,8 +1,10 @@
 package ceu.dam.fct.api;
 
+import java.time.LocalDate;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -21,7 +23,6 @@ import ceu.dam.fct.service.UserUnauthorizedException;
 import ceu.dam.fct.service.UsuarioService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.security.SecurityRequirement;
-import jakarta.validation.constraints.NotBlank;
 
 @RestController
 @RequestMapping("/usuarios")
@@ -48,8 +49,8 @@ public class UsuarioApiService {
 
 	@GetMapping("/consultarRegistros/{id}")
 	@Operation(summary = "Consultar registros del usuario", description = "Consultar registros del usuario")
-	public List<RegistroPractica> consultarRegistros(@PathVariable Long id, @RequestParam String fechaDesde,
-			@RequestParam String fechaHasta, @RequestParam String filtro) throws UserNotFoundException {
+	public List<RegistroPractica> consultarRegistros(@PathVariable Long id, @RequestParam @DateTimeFormat(pattern = "dd/MM/yyyy") LocalDate fechaDesde,
+			@RequestParam @DateTimeFormat(pattern = "dd/MM/yyyy") LocalDate fechaHasta, @RequestParam String filtro) throws UserNotFoundException {
 		return service.consultarRegistros(id, fechaDesde, fechaHasta, filtro);
 	}
 

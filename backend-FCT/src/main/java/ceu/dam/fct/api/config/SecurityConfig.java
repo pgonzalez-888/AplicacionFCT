@@ -21,6 +21,7 @@ public class SecurityConfig {
 
 	@Bean
 	SecurityFilterChain getSecurityFilterChain(HttpSecurity http) throws Exception {
+		http.csrf(crsf -> crsf.disable());
 		http.addFilterBefore(apiKeyFilter, UsernamePasswordAuthenticationFilter.class);
 		return http.build();
 	}

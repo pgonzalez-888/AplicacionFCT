@@ -1,5 +1,6 @@
 package ceu.dam.fct.service;
 
+import java.time.LocalDate;
 import java.util.List;
 
 import ceu.dam.fct.model.Alumno;
@@ -16,7 +17,7 @@ public interface UsuarioService {
 
 	public Alumno obtenerDatosAlumno(Long usuarioId) throws UserNotFoundException;
 
-	public List<RegistroPractica> consultarRegistros(Long usuarioId, String fechaDesde, String fechaHasta,
+	public List<RegistroPractica> consultarRegistros(Long usuarioId, LocalDate fechaDesde, LocalDate fechaHasta,
 			String filtro) throws UserNotFoundException;
 
 	public void altaRegistroPractica(Long usuarioId, Long fechaId, Integer horas, String detalle)
