@@ -1,0 +1,463 @@
+openapi: 3.1.0
+info:
+  title: OpenAPI definition
+  version: v0
+servers:
+- description: Generated server url
+  url: http://localhost:8080
+paths:
+  /usuarios/password/{id}:
+    put:
+      description: Cambiar contraseña a un usuario
+      operationId: cambiarContrasena
+      parameters:
+      - explode: false
+        in: path
+        name: id
+        required: true
+        schema:
+          format: int64
+          type: integer
+        style: simple
+      - explode: true
+        in: query
+        name: antiguaContrasena
+        required: true
+        schema:
+          type: string
+        style: form
+      - explode: true
+        in: query
+        name: nuevaContrasena
+        required: true
+        schema:
+          type: string
+        style: form
+      responses:
+        "200":
+          description: OK
+      security:
+      - Authorization: []
+      summary: Cambiar contraseña de usuarios
+      tags:
+      - usuario-api-service
+      x-accepts:
+      - application/json
+  /usuarios/altaPractica/{id}:
+    put:
+      description: Registro alta usuarios
+      operationId: altaRegistroPractica
+      parameters:
+      - explode: false
+        in: path
+        name: id
+        required: true
+        schema:
+          format: int64
+          type: integer
+        style: simple
+      - explode: true
+        in: query
+        name: fechaId
+        required: true
+        schema:
+          format: int64
+          type: integer
+        style: form
+      - explode: true
+        in: query
+        name: horas
+        required: true
+        schema:
+          format: int32
+          type: integer
+        style: form
+      - explode: true
+        in: query
+        name: detalle
+        required: true
+        schema:
+          type: string
+        style: form
+      responses:
+        "200":
+          description: OK
+      security:
+      - Authorization: []
+      summary: Registro alta de los usuarios al incorporarse a las prácticas
+      tags:
+      - usuario-api-service
+      x-accepts:
+      - application/json
+  /usuarios/login:
+    get:
+      description: Loguea al usuario
+      operationId: login
+      parameters:
+      - explode: true
+        in: query
+        name: nombreUsuario
+        required: true
+        schema:
+          type: string
+        style: form
+      - explode: true
+        in: query
+        name: password
+        required: true
+        schema:
+          type: string
+        style: form
+      responses:
+        "200":
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/Usuario'
+          description: OK
+      security:
+      - Authorization: []
+      summary: Loguea al usuario
+      tags:
+      - usuario-api-service
+      x-accepts:
+      - '*/*'
+  /usuarios/consultarRegistros/{id}:
+    get:
+      description: Consultar registros del usuario
+      operationId: consultarRegistros
+      parameters:
+      - explode: false
+        in: path
+        name: id
+        required: true
+        schema:
+          format: int64
+          type: integer
+        style: simple
+      - explode: true
+        in: query
+        name: fechaDesde
+        required: true
+        schema:
+          format: date
+          type: string
+        style: form
+      - explode: true
+        in: query
+        name: fechaHasta
+        required: true
+        schema:
+          format: date
+          type: string
+        style: form
+      - explode: true
+        in: query
+        name: filtro
+        required: true
+        schema:
+          type: string
+        style: form
+      responses:
+        "200":
+          content:
+            '*/*':
+              schema:
+                items:
+                  $ref: '#/components/schemas/RegistroPractica'
+                type: array
+          description: OK
+      security:
+      - Authorization: []
+      summary: Consultar registros del usuario
+      tags:
+      - usuario-api-service
+      x-accepts:
+      - '*/*'
+  /usuarios/borrarRegistro/{id}:
+    delete:
+      description: Borrar registro
+      operationId: borrarRegistroPractica
+      parameters:
+      - explode: false
+        in: path
+        name: id
+        required: true
+        schema:
+          format: int64
+          type: integer
+        style: simple
+      - explode: true
+        in: query
+        name: registroId
+        required: true
+        schema:
+          format: int64
+          type: integer
+        style: form
+      responses:
+        "200":
+          description: OK
+      security:
+      - Authorization: []
+      summary: Borrar registro alumno
+      tags:
+      - usuario-api-service
+      x-accepts:
+      - application/json
+components:
+  schemas:
+    Alumno:
+      example:
+        ciclo: ciclo
+        anioCurso: 1
+        evaluacion: evaluacion
+        usuario: null
+        registrosPractica:
+        - horas: 3
+          descripcion: descripcion
+          fecha:
+            fecha: 2000-01-23
+            anioCurso: 9
+            evaluacion: evaluacion
+            registrosPractica:
+            - null
+            - null
+            id: 7
+          alumno: null
+          id: 2
+        - horas: 3
+          descripcion: descripcion
+          fecha:
+            fecha: 2000-01-23
+            anioCurso: 9
+            evaluacion: evaluacion
+            registrosPractica:
+            - null
+            - null
+            id: 7
+          alumno: null
+          id: 2
+        id: 6
+        nombreCompleto: nombreCompleto
+        empresa:
+          emailTutorLaboral: emailTutorLaboral
+          tutorLaboral: tutorLaboral
+          telefonoTutorLaboral: telefonoTutorLaboral
+          alumnos:
+          - null
+          - null
+          id: 5
+          nombreEmpresa: nombreEmpresa
+          activo: true
+        tutorDocente:
+          alumnos:
+          - null
+          - null
+          id: 5
+          nombreCompleto: nombreCompleto
+          activo: true
+        activo: true
+      properties:
+        id:
+          format: int64
+          type: integer
+        nombreCompleto:
+          type: string
+        activo:
+          type: boolean
+        ciclo:
+          type: string
+        evaluacion:
+          type: string
+        anioCurso:
+          format: int32
+          type: integer
+        tutorDocente:
+          $ref: '#/components/schemas/Tutor'
+        empresa:
+          $ref: '#/components/schemas/Empresa'
+        usuario:
+          $ref: '#/components/schemas/Usuario'
+        registrosPractica:
+          items:
+            $ref: '#/components/schemas/RegistroPractica'
+          type: array
+    Empresa:
+      example:
+        emailTutorLaboral: emailTutorLaboral
+        tutorLaboral: tutorLaboral
+        telefonoTutorLaboral: telefonoTutorLaboral
+        alumnos:
+        - null
+        - null
+        id: 5
+        nombreEmpresa: nombreEmpresa
+        activo: true
+      properties:
+        id:
+          format: int64
+          type: integer
+        nombreEmpresa:
+          type: string
+        tutorLaboral:
+          type: string
+        emailTutorLaboral:
+          type: string
+        telefonoTutorLaboral:
+          type: string
+        activo:
+          type: boolean
+        alumnos:
+          items:
+            $ref: '#/components/schemas/Alumno'
+          type: array
+    Fecha:
+      example:
+        fecha: 2000-01-23
+        anioCurso: 9
+        evaluacion: evaluacion
+        registrosPractica:
+        - null
+        - null
+        id: 7
+      properties:
+        id:
+          format: int64
+          type: integer
+        fecha:
+          format: date
+          type: string
+        anioCurso:
+          format: int32
+          type: integer
+        evaluacion:
+          type: string
+        registrosPractica:
+          items:
+            $ref: '#/components/schemas/RegistroPractica'
+          type: array
+    RegistroPractica:
+      example:
+        horas: 3
+        descripcion: descripcion
+        fecha:
+          fecha: 2000-01-23
+          anioCurso: 9
+          evaluacion: evaluacion
+          registrosPractica:
+          - null
+          - null
+          id: 7
+        alumno: null
+        id: 2
+      properties:
+        id:
+          format: int64
+          type: integer
+        alumno:
+          $ref: '#/components/schemas/Alumno'
+        fecha:
+          $ref: '#/components/schemas/Fecha'
+        horas:
+          format: int32
+          type: integer
+        descripcion:
+          type: string
+    Tutor:
+      example:
+        alumnos:
+        - null
+        - null
+        id: 5
+        nombreCompleto: nombreCompleto
+        activo: true
+      properties:
+        id:
+          format: int64
+          type: integer
+        nombreCompleto:
+          type: string
+        activo:
+          type: boolean
+        alumnos:
+          items:
+            $ref: '#/components/schemas/Alumno'
+          type: array
+    Usuario:
+      example:
+        usuarioAsociado:
+          ciclo: ciclo
+          anioCurso: 1
+          evaluacion: evaluacion
+          usuario: null
+          registrosPractica:
+          - horas: 3
+            descripcion: descripcion
+            fecha:
+              fecha: 2000-01-23
+              anioCurso: 9
+              evaluacion: evaluacion
+              registrosPractica:
+              - null
+              - null
+              id: 7
+            alumno: null
+            id: 2
+          - horas: 3
+            descripcion: descripcion
+            fecha:
+              fecha: 2000-01-23
+              anioCurso: 9
+              evaluacion: evaluacion
+              registrosPractica:
+              - null
+              - null
+              id: 7
+            alumno: null
+            id: 2
+          id: 6
+          nombreCompleto: nombreCompleto
+          empresa:
+            emailTutorLaboral: emailTutorLaboral
+            tutorLaboral: tutorLaboral
+            telefonoTutorLaboral: telefonoTutorLaboral
+            alumnos:
+            - null
+            - null
+            id: 5
+            nombreEmpresa: nombreEmpresa
+            activo: true
+          tutorDocente:
+            alumnos:
+            - null
+            - null
+            id: 5
+            nombreCompleto: nombreCompleto
+            activo: true
+          activo: true
+        contrasena: contrasena
+        id: 0
+        nombreUsuario: nombreUsuario
+        perfil: perfil
+        activo: true
+      properties:
+        id:
+          format: int64
+          type: integer
+        nombreUsuario:
+          type: string
+        contrasena:
+          type: string
+        perfil:
+          type: string
+        usuarioAsociado:
+          $ref: '#/components/schemas/Alumno'
+        activo:
+          type: boolean
+  securitySchemes:
+    Authorization:
+      in: header
+      name: API-KEY
+      type: apiKey
+

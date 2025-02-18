@@ -25,7 +25,7 @@ public class ApiKeyFilter extends OncePerRequestFilter {
 	@Override
 	protected boolean shouldNotFilter(HttpServletRequest request) throws ServletException {
 		String requestURI = request.getRequestURI();
-		return (requestURI.startsWith("/swagger") || requestURI.startsWith("/docs"));
+		return (requestURI.startsWith("/swagger") || requestURI.startsWith("/api-docs"));
 	}
 
 	protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain)
