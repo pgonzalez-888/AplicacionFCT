@@ -9,8 +9,10 @@ import ceu.dam.fct.model.Usuario;
 
 public interface UsuarioService {
 
+
 	public Usuario login(String nombreUsuario, String contrasena)
 			throws UserNotFoundException, UserUnauthorizedException;
+
 
 	public void cambiarContrasena(Long usuarioId, String antiguaContrasena, String nuevaContrasena)
 			throws PasswordChangeException, UserUnauthorizedException, UserNotFoundException;
