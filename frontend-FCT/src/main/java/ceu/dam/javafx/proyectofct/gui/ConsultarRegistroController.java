@@ -38,11 +38,11 @@ public class ConsultarRegistroController extends AppController{
 
 	    @FXML
 	    void consultarFiltros(ActionEvent event) {
-
+	    	
 	    }
 
 	    @FXML
 	    void irADarAltaPantalla(ActionEvent event) {
-
+	    	
 	    }
 }
