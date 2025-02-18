@@ -11,7 +11,7 @@ import lombok.Data;
 public abstract class Perfil {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Integer id;
+	private Long id;
 
 	private String nombreCompleto;
 	private Boolean activo;

@@ -6,6 +6,6 @@ import org.springframework.stereotype.Repository;
 import ceu.dam.fct.model.Alumno;
 
 @Repository
-public interface AlumnoRepository extends JpaRepository<Alumno, Integer> {
+public interface AlumnoRepository extends JpaRepository<Alumno, Long> {
 
 }

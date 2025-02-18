@@ -1,10 +1,14 @@
 package ceu.dam.fct.service;
 
+import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Optional;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import ceu.dam.fct.model.Alumno;
@@ -19,6 +23,8 @@ import ceu.dam.fct.repository.UsuarioRepository;
 @Service
 public class UsuarioServiceImpl implements UsuarioService {
 
+	private static final Logger log = LoggerFactory.getLogger(UsuarioServiceImpl.class);
+
 	@Autowired
 	private UsuarioRepository usuarioRepository;
 
@@ -31,85 +37,202 @@ public class UsuarioServiceImpl implements UsuarioService {
 	@Autowired
 	private FechaRepository fechaRepository;
 
-	@Autowired
-	private BCryptPasswordEncoder passwordEncoder;
-
-	private Usuario usuarioLogado;
-
 	@Override
-	public Boolean login(String nombreUsuario, String contrasena) {
-		// Validar que el usuario exista y esté asociado a un alumno
+	public Usuario login(String nombreUsuario, String contrasena)
+			throws UserNotFoundException, UserUnauthorizedException {
+		log.debug("Realizando login con usuario " + nombreUsuario);
 		Optional<Usuario> usuarioOpt = usuarioRepository.findByNombreUsuario(nombreUsuario);
+
 		if (usuarioOpt.isPresent()) {
 			Usuario usuario = usuarioOpt.get();
-			if (passwordEncoder.matches(contrasena, usuario.getContrasena()) && usuario.getActivo()) {
-				this.usuarioLogado = usuario; // Asignar el usuario logueado
-				return true;
+			if (contrasena.equals(usuario.getContrasena()) && usuario.getActivo()) {
+				log.debug("Login exitoso para el usuario: " + nombreUsuario);
+				return usuario; // El frontend recibirá el usuario con su ID
+			} else {
+				log.debug("Contraseña incorrecta o usuario inactivo");
+				throw new UserUnauthorizedException("Contraseña incorrecta o usuario inactivo");
 			}
+		} else {
+			log.debug("No existe usuario con ese nombre");
+			throw new UserNotFoundException("No existe usuario con ese nombre");
 		}
-		return false;
 	}
 
 	@Override
-	public Boolean cambiarContrasena(String nuevaContrasena, String usuarioLogado) {
+	public void cambiarContrasena(Long usuarioId, String antiguaContrasena, String nuevaContrasena)
+			throws PasswordChangeException, UserUnauthorizedException, UserNotFoundException {
+		log.debug("Intentando cambiar la contraseña para el usuario con ID: " + usuarioId);
+
+		Optional<Usuario> usuarioOpt = usuarioRepository.findById(usuarioId);
+
+		if (!usuarioOpt.isPresent()) {
+			log.error("Error: Usuario con ID " + usuarioId + " no encontrado.");
+			throw new UserNotFoundException("Usuario no encontrado");
+		}
+
+		Usuario usuario = usuarioOpt.get();
+
+		if (!antiguaContrasena.equals(usuario.getContrasena())) {
+			log.error("Error: La contraseña actual es incorrecta para el usuario con ID " + usuarioId);
+			throw new UserUnauthorizedException("La contraseña actual es incorrecta");
+		}
+
+		if (nuevaContrasena.equals(antiguaContrasena)) {
+			log.error("Error: La nueva contraseña no puede ser igual a la antigua para el usuario con ID " + usuarioId);
+			throw new PasswordChangeException("La nueva contraseña no puede ser igual a la antigua");
+		}
+
 		if (nuevaContrasena.length() < 8) {
-			return false; // Verificar que la nueva contraseña tenga al menos 8 caracteres
-		}
-		usuarioLogado.setContrasena(passwordEncoder.encode(nuevaContrasena));
-		usuarioRepository.save(usuarioLogado);
-		return true;
-	}
-
-	@Override
-	public Alumno obtenerDatosAlumno(String usuarioLogado) {
-		Usuario usuario = usuarioRepository.findByNombreUsuario(usuarioLogado).get();
-		return usuario.getUsuarioAsociado();
-	}
-
-	@Override
-	public List<RegistroPractica> consultarRegistros(String usuarioLogado, String fechaDesde, String fechaHasta,
-			String filtro) {
-		Alumno alumno = obtenerDatosAlumno(usuarioLogado);
-		return registroPracticaRepository.findRegistrosByAlumno(alumno, fechaDesde, fechaHasta, filtro);
-	}
-
-	@Override
-	public Boolean altaRegistroPractica(String usuarioLogado, Integer fechaId, Integer horas, String detalle) {
-		Alumno alumno = obtenerDatosAlumno(usuarioLogado);
-		Fecha fecha = fechaRepository.findById(fechaId).get();
-
-		if (!esFechaDisponible(fecha, alumno)) {
-			return false;
+			log.error(
+					"Error: La nueva contraseña no cumple con la longitud mínima para el usuario con ID " + usuarioId);
+			throw new PasswordChangeException("La contraseña debe tener al menos 8 caracteres");
 		}
 
-		RegistroPractica registro = new RegistroPractica();
-		registro.setAlumno(alumno);
-		registro.setFecha(fecha);
-		registro.setHoras(horas);
-		registro.setDescripcion(detalle);
-		registroPracticaRepository.save(registro);
+		usuario.setContrasena(nuevaContrasena);
+		usuarioRepository.save(usuario);
 
-		return true;
+		log.info("Contraseña cambiada con éxito para el usuario con ID " + usuarioId);
 	}
 
 	@Override
-	public Boolean borrarRegistroPractica(Integer registroId, String usuarioLogado) {
-		RegistroPractica registro = registroPracticaRepository.findById(registroId).get();
-		if (registro != null) {
-			registroPracticaRepository.delete(registro);
-			return true;
+	public Alumno obtenerDatosAlumno(Long usuarioId) throws UserNotFoundException {
+		log.debug("Obteniendo datos del alumno asociado al usuario con ID: " + usuarioId);
+
+		Optional<Usuario> usuarioOpt = usuarioRepository.findById(usuarioId);
+		if (!usuarioOpt.isPresent()) {
+			log.error("Error: Usuario con ID " + usuarioId + " no encontrado.");
+			throw new UserNotFoundException("Usuario no encontrado");
 		}
-		return false;
+
+		Usuario usuario = usuarioOpt.get();
+		Alumno alumno = usuario.getUsuarioAsociado();
+
+		if (alumno == null) {
+			log.error("Error: No se encontró un alumno asociado al usuario con ID " + usuarioId);
+			throw new UserNotFoundException("No se encontró un alumno asociado a este usuario");
+		}
+
+		log.info("Datos del alumno obtenidos con éxito para el usuario con ID " + usuarioId);
+		return alumno;
 	}
 
 	@Override
-	public void cerrarSesion() {
-		this.usuarioLogado = null;
+	public List<RegistroPractica> consultarRegistros(Long usuarioId, LocalDate fechaDesde, LocalDate fechaHasta,
+			String filtro) throws UserNotFoundException {
+		log.debug("Consultando registros para el usuario con ID: " + usuarioId);
+
+		Optional<Usuario> usuarioOpt = usuarioRepository.findById(usuarioId);
+		if (!usuarioOpt.isPresent()) {
+			log.error("Error: Usuario con ID " + usuarioId + " no encontrado.");
+			throw new UserNotFoundException("Usuario no encontrado");
+		}
+
+		Usuario usuario = usuarioOpt.get();
+		Alumno alumno = usuario.getUsuarioAsociado();
+
+		if (alumno == null) {
+			log.error("Error: No se encontró un alumno asociado al usuario con ID " + usuarioId);
+			throw new UserNotFoundException("No se encontró un alumno asociado a este usuario");
+		}
+
+		List<RegistroPractica> registros = new ArrayList<>();
+		switch (filtro) {
+        case "completas":
+            // Fechas completas: buscar los registros que existan dentro del rango y esten registrados a este alumno
+            registros = registroPracticaRepository.findByAlumnoAndFecha_FechaBetween(alumno, fechaDesde, fechaHasta);
+            break;
+
+        case "sin_completar":
+            // Fechas sin completar: buscar aquellos registros que no hayan sido registrados a este alumno dentro del rango            
+        	List<RegistroPractica> registrosSinFiltrar = registroPracticaRepository.findByFecha_FechaBetween(fechaDesde, fechaHasta);
+        	
+        	
+        	for (RegistroPractica registroPractica : registrosSinFiltrar) {
+				if(!registroPracticaRepository.existsByAlumnoAndFecha(alumno, registroPractica.getFecha())) {
+					registros.add(registroPractica);
+				}
+			}
+        	
+        	
+            break;
+
+        case "todas":
+        default:
+            // Todas las fechas: buscar todos los registros en el rango sin filtro adicional
+            registros = registroPracticaRepository.findByFecha_FechaBetween(fechaDesde, fechaHasta);
+            break;
+    }
+
+		log.info("Registros obtenidos con éxito para el usuario con ID " + usuarioId);
+		return registros;
 	}
 
 	@Override
-	public void salir() {
-		System.exit(0);
+	public void altaRegistroPractica(Long usuarioId, Long fechaId, Integer horas, String detalle)
+			throws FechaNoDisponibleException, UserNotFoundException {
+		log.debug("Creando un registro para el usuario con ID " + usuarioId + " y fecha ID " + fechaId);
+
+		Optional<Usuario> usuarioOpt = usuarioRepository.findById(usuarioId);
+		if (usuarioOpt.isPresent()) {
+			Usuario usuario = usuarioOpt.get();
+
+			Alumno alumno = usuario.getUsuarioAsociado();
+			if (alumno == null) {
+				log.error("Error: No se encontró un alumno asociado al usuario con ID " + usuarioId);
+				throw new UserNotFoundException("No se encontró un alumno asociado a este usuario");
+			}
+
+			Optional<Fecha> fechaOpt = fechaRepository.findById(fechaId);
+			if (fechaOpt.isPresent()) {
+				Fecha fecha = fechaOpt.get();
+				if (!esFechaDisponible(fecha, alumno)) {
+					log.error("Error: La fecha con ID " + fechaId + " no está disponible para el usuario con ID "
+							+ usuarioId);
+					throw new FechaNoDisponibleException("La fecha no está disponible para este alumno");
+				}
+
+				// Crear y guardar el registro
+				RegistroPractica registro = new RegistroPractica();
+				registro.setAlumno(alumno);
+				registro.setFecha(fecha);
+				registro.setHoras(horas);
+				registro.setDescripcion(detalle);
+				registroPracticaRepository.save(registro);
+
+				log.info("Registro creado con éxito para el usuario con ID " + usuarioId);
+			} else {
+				log.error("Error: Fecha con ID " + fechaId + " no encontrada.");
+				throw new FechaNoDisponibleException("Fecha no disponible");
+			}
+		} else {
+			log.error("Error: Usuario con ID " + usuarioId + " no encontrado.");
+			throw new UserNotFoundException("Usuario no encontrado");
+		}
+	}
+
+	@Override
+	public void borrarRegistroPractica(Long usuarioId, Long registroId)
+			throws UserNotFoundException, RegistroNoEncontradoException {
+		log.debug("Intentando borrar el registro con ID " + registroId + " para el usuario con ID " + usuarioId);
+
+		Optional<Usuario> usuarioOpt = usuarioRepository.findById(usuarioId);
+		if (usuarioOpt.isPresent()) {
+			Usuario usuario = usuarioOpt.get();
+
+			Optional<RegistroPractica> registroOpt = registroPracticaRepository.findById(registroId);
+			if (registroOpt.isPresent()) {
+				RegistroPractica registro = registroOpt.get();
+				registroPracticaRepository.delete(registro);
+
+				log.info("Registro con ID " + registroId + " borrado con éxito para el usuario con ID " + usuarioId);
+			} else {
+				log.error("Error: Registro con ID " + registroId + " no encontrado.");
+				throw new RegistroNoEncontradoException("Registro no encontrado");
+			}
+		} else {
+			log.error("Error: Usuario con ID " + usuarioId + " no encontrado.");
+			throw new UserNotFoundException("Usuario no encontrado");
+		}
 	}
 
 	private boolean esFechaDisponible(Fecha fecha, Alumno alumno) {

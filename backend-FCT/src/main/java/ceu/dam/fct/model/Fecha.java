@@ -1,5 +1,6 @@
 package ceu.dam.fct.model;
 
+import java.time.LocalDate;
 import java.util.List;
 
 import jakarta.persistence.Entity;
@@ -14,9 +15,9 @@ import lombok.Data;
 public class Fecha {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Integer id;
+	private Long id;
 
-	private java.util.Date fecha;
+	private LocalDate fecha;
 	private Integer anioCurso;
 	private String evaluacion; // Septiembre, Marzo
 
