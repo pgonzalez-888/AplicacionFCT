@@ -10,7 +10,7 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="653.0" prefWidth="897.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="653.0" prefWidth="897.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ceu.dam.javafx.proyectofct.gui.DarAltaController">
    <children>
       <Label layoutX="104.0" layoutY="41.0" prefHeight="72.0" prefWidth="711.0" style="-fx-background-color: white; -fx-background-radius: 30; -fx-alignment: center;" text=" Dar de alta un registro" textFill="#0092d2">
          <font>
