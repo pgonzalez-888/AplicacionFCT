@@ -15,9 +15,11 @@ public class App extends Application {
 	public void start(Stage primaryStage) throws Exception {
 		primaryStage.initStyle(StageStyle.UNDECORATED);
 		AppController controller = new AppController(primaryStage);
+		//897
+		//653
 		
-		primaryStage.setWidth(800);  // Ancho
-	    primaryStage.setHeight(600); // Alto
+		primaryStage.setWidth(877);  // Ancho
+	    primaryStage.setHeight(643); // Alto
 	    
 		controller.changeScene(AppController.FXML_LOGIN);
 		primaryStage.initStyle(StageStyle.UNDECORATED);

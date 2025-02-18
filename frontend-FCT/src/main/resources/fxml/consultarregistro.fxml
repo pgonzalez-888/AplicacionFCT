@@ -8,21 +8,21 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="653.0" prefWidth="897.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <TextField fx:id="tfUsername" layoutX="42.0" layoutY="35.0" promptText="Fecha desde" style="-fx-background-color: transparent; -fx-border-color: transparent transparent #2196F3 transparent;" />
-      <TextField fx:id="tfUsername1" layoutX="42.0" layoutY="71.0" promptText="Fecha hasta" style="-fx-background-color: transparent; -fx-border-color: transparent transparent #2196F3 transparent;" />
-      <Button fx:id="btnIniciarSesion" layoutX="416.0" layoutY="36.0" mnemonicParsing="false" onAction="#login" prefHeight="25.0" prefWidth="151.0" style="-fx-background-color: #d6733d; -fx-border-radius: 30; -fx-border-width: 2; -fx-background-radius: 30;" text="Consultar por filtros" textAlignment="CENTER" />
-      <Button fx:id="btnIniciarSesion1" layoutX="416.0" layoutY="72.0" mnemonicParsing="false" onAction="#login" prefHeight="25.0" prefWidth="151.0" style="-fx-background-color: #d6733d; -fx-border-radius: 30; -fx-border-width: 2; -fx-background-radius: 30;" text="Dar de alta un registro" textAlignment="CENTER" />
-      <ComboBox fx:id="comboBoxFecha" layoutX="218.0" layoutY="36.0" prefHeight="25.0" prefWidth="171.0" style="-fx-background-color: white; -fx-background-radius: 30;" />
-      <TableView layoutX="42.0" layoutY="116.0" prefHeight="273.0" prefWidth="528.0" stylesheets="@../css/consultarregistro.css">
+      <TextField fx:id="fechaDesdeTf" layoutX="69.0" layoutY="43.0" prefHeight="33.0" prefWidth="209.0" promptText="Fecha desde" style="-fx-background-color: transparent; -fx-border-color: transparent transparent #2196F3 transparent;" />
+      <TextField fx:id="fechaHastaTf" layoutX="69.0" layoutY="91.0" prefHeight="33.0" prefWidth="209.0" promptText="Fecha hasta" style="-fx-background-color: transparent; -fx-border-color: transparent transparent #2196F3 transparent;" />
+      <Button fx:id="btnConsultarFiltros" layoutX="629.0" layoutY="41.0" mnemonicParsing="false" onAction="#consultarFiltros" prefHeight="33.0" prefWidth="185.0" style="-fx-background-color: #d6733d; -fx-border-radius: 30; -fx-border-width: 2; -fx-background-radius: 30;" text="Consultar por filtros" textAlignment="CENTER" />
+      <Button fx:id="btnDarDeAlta" layoutX="629.0" layoutY="94.0" mnemonicParsing="false" onAction="#irADarAltaPantalla" prefHeight="33.0" prefWidth="185.0" style="-fx-background-color: #d6733d; -fx-border-radius: 30; -fx-border-width: 2; -fx-background-radius: 30;" text="Dar de alta un registro" textAlignment="CENTER" />
+      <ComboBox fx:id="comboBoxOpciones" layoutX="375.0" layoutY="49.0" prefHeight="33.0" prefWidth="171.0" style="-fx-background-color: white; -fx-background-radius: 30;" />
+      <TableView fx:id="tabla" layoutX="40.0" layoutY="162.0" prefHeight="450.0" prefWidth="816.0" stylesheets="@../css/consultarregistro.css">
         <columns>
-          <TableColumn prefWidth="130.0" style="-fx-border-color: #00AEEF; -fx-background-color: white; -fx-border-width: 0 0 1 0; -fx-alignment: center;" text="Fecha" />
-            <TableColumn prefWidth="109.0" style="-fx-border-color: #00AEEF; -fx-background-color: white; -fx-border-width: 0 0 1 0; -fx-alignment: center;" text="Hora" />
-            <TableColumn prefWidth="288.0" style="-fx-border-color: #00AEEF; -fx-background-color: white; -fx-border-width: 0 0 1 0; -fx-alignment: center;" text="Descripción" />
+          <TableColumn fx:id="fechaTColumn" prefWidth="130.0" style="-fx-border-color: #00AEEF; -fx-background-color: white; -fx-border-width: 0 0 1 0; -fx-alignment: center;" text="Fecha" />
+            <TableColumn fx:id="horaTColumn" prefWidth="171.0" style="-fx-border-color: #00AEEF; -fx-background-color: white; -fx-border-width: 0 0 1 0; -fx-alignment: center;" text="Hora" />
+            <TableColumn fx:id="descripcionTColumn" prefWidth="514.0" style="-fx-border-color: #00AEEF; -fx-background-color: white; -fx-border-width: 0 0 1 0; -fx-alignment: center;" text="Descripción" />
         </columns>
       </TableView>
-      <Button layoutX="564.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="33.0" style="-fx-background-color: transparent;" text="X" textFill="#d6543a">
+      <Button layoutX="847.0" layoutY="10.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="33.0" style="-fx-background-color: transparent;" text="X" textFill="#d6543a">
          <font>
             <Font name="System Bold" size="18.0" />
          </font>
