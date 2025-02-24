@@ -6,6 +6,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
 
 public class MenuController extends AppController{
@@ -38,8 +39,8 @@ public class MenuController extends AppController{
 	    private Label nombreCompleto;
 
 	    @FXML
-	    private Pane panelCambiante;
-
+	    private BorderPane panelCambiante;
+	    
 	    @FXML
 	    private Pane panelPrincipal;
 
@@ -48,6 +49,8 @@ public class MenuController extends AppController{
 
 	    @FXML
 	    void cambiarContraseñaView(ActionEvent event) {
+	    	panelCambiante.setCenter(new Pane());
+	    	
 
 	    }
 
