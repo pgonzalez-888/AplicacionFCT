@@ -3,11 +3,16 @@ package ceu.dam.javafx.proyectofct.gui;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Optional;
 
 import ceu.dam.javafx.proyectofct.App;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
+import javafx.scene.control.ButtonType;
 import javafx.stage.Stage;
 
 public class AppController {
@@ -65,5 +70,24 @@ public class AppController {
 	public Object getParam(String key) {
 		Map<String, Object> mapa = (Map<String, Object>) primaryStage.getUserData();
 		return mapa.get(key);
+	}
+
+	public void lanzarError(String mensaje) {
+		Alert alerta = new Alert(AlertType.ERROR);
+		alerta.setTitle("Error");
+		alerta.setHeaderText(null);
+		alerta.setContentText(mensaje);
+		alerta.showAndWait();
+	}
+
+	public void salir(ActionEvent event) {
+		Alert pregunta = new Alert(AlertType.CONFIRMATION);
+		pregunta.setContentText("¿Estás seguro de querer cerrar?");
+		pregunta.setTitle("Confirmación");
+		pregunta.setHeaderText(null);
+		Optional<ButtonType> respuesta = pregunta.showAndWait();
+		if (respuesta.get() == ButtonType.OK) {
+			System.exit(0);
+		}
 	}
 }
