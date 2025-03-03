@@ -12,8 +12,10 @@ import org.openapitools.client.model.Usuario;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.Parent;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
+import javafx.scene.layout.Pane;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextArea;
@@ -33,6 +35,9 @@ public class DarAltaController extends AppController {
 	private Button cerrarBtn;
 
 	@FXML
+	private Pane panel;
+
+	@FXML
 	private ComboBox<LocalDate> comboBoxFecha;
 
 	@FXML
@@ -43,9 +48,6 @@ public class DarAltaController extends AppController {
 
 	public void initialize() {
 		usuario = (Usuario) getParam("usuario");
-
-
-
 		ApiClient cliente = new ApiClient();
 		cliente.setApiKey("javiylasardillas");
 		cliente.setBasePath("http://localhost:8080");
@@ -86,11 +88,11 @@ public class DarAltaController extends AppController {
 		registro.setHoras(Integer.valueOf(tfNumeroHoras.getText()));
 	}
 
-	public void lanzarError(String mensaje) {
-		Alert alerta = new Alert(AlertType.ERROR);
-		alerta.setTitle("Error");
-		alerta.setHeaderText(null);
-		alerta.setContentText(mensaje);
-		alerta.showAndWait();
+	@FXML
+	void volver(ActionEvent event) {
+		Parent nuevaVista = loadScene(FXML_CONSULTAR_REGISTRO);
+		panel.getChildren().setAll(new Pane());
+		panel.getChildren().setAll(nuevaVista);
 	}
+
 }

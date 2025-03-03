@@ -18,7 +18,7 @@
 	</dependency>
 	<dependency>
 		<groupId>org.openapitools</groupId>
-		<artifactId>cliente-api-FCT</artifactId>
+		<artifactId>cliente-api-fct</artifactId>
 		<version>v0</version>
 	</dependency>
    </dependencies>

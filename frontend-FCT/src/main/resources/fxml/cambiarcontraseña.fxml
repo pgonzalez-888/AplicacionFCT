@@ -21,7 +21,7 @@
             <Image url="@../img/passwordIconWhite.png" />
          </image>
       </ImageView>
-      <Button layoutX="516.0" layoutY="22.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="33.0" style="-fx-background-color: transparent;" text="X" textFill="#d6543a">
+      <Button layoutX="516.0" layoutY="22.0" mnemonicParsing="false" onAction="#cerrar" prefHeight="25.0" prefWidth="33.0" style="-fx-background-color: transparent;" text="X" textFill="#d6543a">
          <font>
             <Font name="System Bold" size="18.0" />
          </font>

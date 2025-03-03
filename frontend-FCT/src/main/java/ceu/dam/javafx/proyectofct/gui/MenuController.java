@@ -81,11 +81,11 @@ public class MenuController extends AppController {
 		user = new Usuario();
 		user = (Usuario) getParam("usuario");
 		cicloLbl.setText(cicloLbl.getText() + user.getUsuarioAsociado().getCiclo());
-		empresaLbl.setText(empresaLbl.getText()+ user.getUsuarioAsociado().getEmpresa().getNombreEmpresa());
+		empresaLbl.setText(empresaLbl.getText() + user.getUsuarioAsociado().getEmpresa().getNombreEmpresa());
 		evaluacionLbl.setText(evaluacionLbl.getText() + user.getUsuarioAsociado().getEvaluacion());
 		nombreCompleto.setText(nombreCompleto.getText() + user.getUsuarioAsociado().getNombreCompleto());
+		tutorLbl.setText(tutorLbl.getText() + user.getUsuarioAsociado().getTutorDocente().getNombreCompleto());
 
 	}
 
-	}
 }

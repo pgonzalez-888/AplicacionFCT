@@ -7,15 +7,13 @@ import org.openapitools.client.model.Usuario;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
-import javafx.scene.control.Alert.AlertType;
 
 public class CambiarContraseñaController extends AppController {
 
 	private UsuarioApiServiceApi service;
-	
+
 	private Usuario usuario;
 
 	@FXML
@@ -31,19 +29,14 @@ public class CambiarContraseñaController extends AppController {
 	private PasswordField repeatNewPassPf;
 
 	public void initialize() {
-		//usuario = (Usuario) getParam("usuario");
+		usuario = (Usuario) getParam("usuario");
 		ApiClient cliente = new ApiClient();
 		cliente.setApiKey("javiylasardillas");
 		cliente.setBasePath("http://localhost:8080");
 		service = new UsuarioApiServiceApi(cliente);
-		try {
-			usuario = service.login("geronimo", "caca");
-		} catch (ApiException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+
 	}
-	
+
 	@FXML
 	void cambiarContraseña(ActionEvent event) {
 		try {
@@ -52,12 +45,9 @@ public class CambiarContraseñaController extends AppController {
 			lanzarError(e.getMessage());
 		}
 	}
-	
-	public void lanzarError(String mensaje) {
-		Alert alerta = new Alert(AlertType.ERROR);
-		alerta.setTitle("Error");
-		alerta.setHeaderText(null);
-		alerta.setContentText(mensaje);
-		alerta.showAndWait();
+
+	@FXML
+	void cerrar(ActionEvent event) {
+		salir(event);
 	}
 }

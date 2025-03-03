@@ -7,7 +7,7 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="619.0" prefWidth="570.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ceu.dam.javafx.proyectofct.gui.DetalleRegistroController">
+<Pane fx:id="panel" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="619.0" prefWidth="570.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ceu.dam.javafx.proyectofct.gui.DetalleRegistroController">
    <children>
       <Label layoutX="73.0" layoutY="41.0" prefHeight="80.0" prefWidth="441.0" style="-fx-background-color: white; -fx-background-radius: 30; -fx-alignment: center;" text="Detalle del registro" textFill="#0092d2">
          <font>
@@ -39,7 +39,7 @@
             <Font name="System Bold Italic" size="18.0" />
          </font>
       </Label>
-      <Button fx:id="btnBorrarRegistro" layoutX="198.0" layoutY="537.0" mnemonicParsing="false" onAction="#borrarRegistro" prefHeight="39.0" prefWidth="174.0" style="-fx-background-color: #d6543a; -fx-border-radius: 30; -fx-border-width: 2; -fx-background-radius: 30;" text="Borrar Registro" textAlignment="CENTER" />
+      <Button fx:id="btnBorrarRegistro" layoutX="257.0" layoutY="537.0" mnemonicParsing="false" onAction="#borrarRegistro" prefHeight="39.0" prefWidth="174.0" style="-fx-background-color: #d6543a; -fx-border-radius: 30; -fx-border-width: 2; -fx-background-radius: 30;" text="Borrar Registro" textAlignment="CENTER" />
       <Label layoutX="73.0" layoutY="204.0" prefHeight="35.0" prefWidth="125.0" text="Descripción:" textFill="#242729" underline="true">
          <font>
             <Font size="18.0" />
@@ -55,5 +55,6 @@
             <Font name="System Bold" size="18.0" />
          </font>
       </Button>
+      <Button fx:id="btnVolverAtras" layoutX="65.0" layoutY="537.0" mnemonicParsing="false" onAction="#volver" prefHeight="39.0" prefWidth="174.0" style="-fx-background-color: #d6733d; -fx-border-radius: 30; -fx-border-width: 2; -fx-background-radius: 30;" text="Volver atrás" textAlignment="CENTER" />
    </children>
 </Pane>
