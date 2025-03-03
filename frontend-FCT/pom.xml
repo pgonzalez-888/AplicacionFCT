@@ -17,9 +17,9 @@
 		<version>16</version>
 	</dependency>
 	<dependency>
-	<groupId>ceu.dam.ad</groupId>
-    <artifactId>fct-cliente-api</artifactId>
-    <version>v0</version>
+		<groupId>org.openapitools</groupId>
+		<artifactId>cliente-api-FCT</artifactId>
+		<version>v0</version>
 	</dependency>
-</dependencies>
+   </dependencies>
 </project>

@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import ceu.dam.fct.model.Fecha;
 import ceu.dam.fct.model.RegistroPractica;
 import ceu.dam.fct.model.Usuario;
 import ceu.dam.fct.service.FechaNoDisponibleException;
@@ -49,9 +50,17 @@ public class UsuarioApiService {
 
 	@GetMapping("/consultarRegistros/{id}")
 	@Operation(summary = "Consultar registros del usuario", description = "Consultar registros del usuario")
-	public List<RegistroPractica> consultarRegistros(@PathVariable Long id, @RequestParam @DateTimeFormat(pattern = "dd/MM/yyyy") LocalDate fechaDesde,
-			@RequestParam @DateTimeFormat(pattern = "dd/MM/yyyy") LocalDate fechaHasta, @RequestParam String filtro) throws UserNotFoundException {
+	public List<RegistroPractica> consultarRegistros(@PathVariable Long id,
+			@RequestParam @DateTimeFormat(pattern = "dd/MM/yyyy") LocalDate fechaDesde,
+			@RequestParam @DateTimeFormat(pattern = "dd/MM/yyyy") LocalDate fechaHasta, @RequestParam String filtro)
+			throws UserNotFoundException {
 		return service.consultarRegistros(id, fechaDesde, fechaHasta, filtro);
+	}
+
+	@GetMapping("/consultarFechas")
+	@Operation(summary = "Consultar fechas existentes", description = "Consultar fechas que existan en la base de datos")
+	public List<Fecha> consultarFechas() {
+		return service.consultarFechas();
 	}
 
 	@PutMapping("/altaPractica/{id}")

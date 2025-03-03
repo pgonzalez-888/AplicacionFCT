@@ -7,6 +7,7 @@ All URIs are relative to *http://localhost:8080*
 | [**altaRegistroPractica**](UsuarioApiServiceApi.md#altaRegistroPractica) | **PUT** /usuarios/altaPractica/{id} | Registro alta de los usuarios al incorporarse a las prácticas |
 | [**borrarRegistroPractica**](UsuarioApiServiceApi.md#borrarRegistroPractica) | **DELETE** /usuarios/borrarRegistro/{id} | Borrar registro alumno |
 | [**cambiarContrasena**](UsuarioApiServiceApi.md#cambiarContrasena) | **PUT** /usuarios/password/{id} | Cambiar contraseña de usuarios |
+| [**consultarFechas**](UsuarioApiServiceApi.md#consultarFechas) | **GET** /usuarios/consultarFechas | Consultar fechas existentes |
 | [**consultarRegistros**](UsuarioApiServiceApi.md#consultarRegistros) | **GET** /usuarios/consultarRegistros/{id} | Consultar registros del usuario |
 | [**login**](UsuarioApiServiceApi.md#login) | **GET** /usuarios/login | Loguea al usuario |
 
@@ -221,6 +222,71 @@ null (empty response body)
 
  - **Content-Type**: Not defined
  - **Accept**: Not defined
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | OK |  -  |
+
+<a id="consultarFechas"></a>
+# **consultarFechas**
+> List&lt;Fecha&gt; consultarFechas()
+
+Consultar fechas existentes
+
+Consultar fechas que existan en la base de datos
+
+### Example
+```java
+// Import classes:
+import org.openapitools.client.ApiClient;
+import org.openapitools.client.ApiException;
+import org.openapitools.client.Configuration;
+import org.openapitools.client.auth.*;
+import org.openapitools.client.models.*;
+import org.openapitools.client.api.UsuarioApiServiceApi;
+
+public class Example {
+  public static void main(String[] args) {
+    ApiClient defaultClient = Configuration.getDefaultApiClient();
+    defaultClient.setBasePath("http://localhost:8080");
+    
+    // Configure API key authorization: Authorization
+    ApiKeyAuth Authorization = (ApiKeyAuth) defaultClient.getAuthentication("Authorization");
+    Authorization.setApiKey("YOUR API KEY");
+    // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
+    //Authorization.setApiKeyPrefix("Token");
+
+    UsuarioApiServiceApi apiInstance = new UsuarioApiServiceApi(defaultClient);
+    try {
+      List<Fecha> result = apiInstance.consultarFechas();
+      System.out.println(result);
+    } catch (ApiException e) {
+      System.err.println("Exception when calling UsuarioApiServiceApi#consultarFechas");
+      System.err.println("Status code: " + e.getCode());
+      System.err.println("Reason: " + e.getResponseBody());
+      System.err.println("Response headers: " + e.getResponseHeaders());
+      e.printStackTrace();
+    }
+  }
+}
+```
+
+### Parameters
+This endpoint does not need any parameter.
+
+### Return type
+
+[**List&lt;Fecha&gt;**](Fecha.md)
+
+### Authorization
+
+[Authorization](../README.md#Authorization)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: */*
 
 ### HTTP response details
 | Status code | Description | Response headers |

@@ -4,6 +4,7 @@ import java.time.LocalDate;
 import java.util.List;
 
 import ceu.dam.fct.model.Alumno;
+import ceu.dam.fct.model.Fecha;
 import ceu.dam.fct.model.RegistroPractica;
 import ceu.dam.fct.model.Usuario;
 
@@ -27,5 +28,8 @@ public interface UsuarioService {
 
 	public void borrarRegistroPractica(Long usuarioId, Long registroId)
 			throws UserNotFoundException, RegistroNoEncontradoException;
+
+
+	public List<Fecha> consultarFechas();
 
 }
