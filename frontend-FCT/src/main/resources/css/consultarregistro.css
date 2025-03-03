@@ -1,13 +1,21 @@
+/* Estilo global de la tabla */
 .table-view {
-    -fx-background-color: white;
     -fx-border-radius: 15px;
 }
 
+/* Estilo para las celdas */
 .table-row-cell {
     -fx-border-color: #00AEEF; /* Bordes azules */
     -fx-border-width: 0 0 1 0;
+    -fx-background-color: transparent;
 }
 
+/* Estilo para filas con descripción 'Vacío' */
+.table-row.vacio {
+    -fx-background-color: #f5c255 !important;
+}
+
+/* Estilo para la columna */
 .table-column {
     -fx-alignment: CENTER;
 }
