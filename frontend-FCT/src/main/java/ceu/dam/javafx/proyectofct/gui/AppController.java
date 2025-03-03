@@ -20,12 +20,11 @@ public class AppController {
 	private static final String PATH_BASE = "/fxml/";
 	public static final String FXML_LOGIN = PATH_BASE + "login.fxml";
 	public static final String FXML_CON_MENU = PATH_BASE + "menu.fxml";
-	public static final String FXML_SIN_MENU = PATH_BASE + "sinmenu.fxml";
 	public static final String FXML_CAMBIAR_CONTRASEÑA = PATH_BASE + "cambiarcontraseña.fxml";
 	public static final String FXML_CONSULTAR_REGISTRO = PATH_BASE + "consultarregistro.fxml";
-	public static final String FXML_RESUMEN_HORAS = PATH_BASE + "resumenhoras.fxml";
 	public static final String FXML_DETALLE_REGISTRO = PATH_BASE + "detalleRegistro.fxml";
 	public static final String FXML_ALTA_REGISTRO = PATH_BASE + "dardealtaregistro.fxml";
+	public static final String FXML_PERFIL_PRUEBA = PATH_BASE + "perfilprueba.fxml";
 
 	protected static Stage primaryStage;
 

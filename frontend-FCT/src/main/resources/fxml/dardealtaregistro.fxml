@@ -10,33 +10,33 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="653.0" prefWidth="897.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ceu.dam.javafx.proyectofct.gui.DarAltaController">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="619.0" prefWidth="570.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ceu.dam.javafx.proyectofct.gui.DarAltaController">
    <children>
-      <Label layoutX="104.0" layoutY="41.0" prefHeight="72.0" prefWidth="711.0" style="-fx-background-color: white; -fx-background-radius: 30; -fx-alignment: center;" text=" Dar de alta un registro" textFill="#0092d2">
+      <Label layoutX="55.0" layoutY="51.0" prefHeight="72.0" prefWidth="475.0" style="-fx-background-color: white; -fx-background-radius: 30; -fx-alignment: center;" text=" Dar de alta un registro" textFill="#0092d2">
          <font>
             <Font name="System Bold Italic" size="24.0" />
          </font>
       </Label>
-      <Label layoutX="496.0" layoutY="137.0" prefHeight="35.0" prefWidth="86.0" text="Fecha:" textFill="#242729">
+      <Label layoutX="250.0" layoutY="155.0" prefHeight="35.0" prefWidth="86.0" text="Fecha:" textFill="#242729">
          <font>
             <Font name="System Italic" size="18.0" />
          </font>
       </Label>
-      <Button fx:id="btnDarDeAlta" layoutX="382.0" layoutY="546.0" mnemonicParsing="false" onAction="#darDeAlta" prefHeight="39.0" prefWidth="183.0" style="-fx-background-color: #f5c255; -fx-border-radius: 30; -fx-border-width: 2; -fx-background-radius: 30;" text="Dar de alta" textAlignment="CENTER" />
-      <Label layoutX="153.0" layoutY="195.0" prefHeight="35.0" prefWidth="125.0" text="Descripción:" textFill="#242729" underline="true">
+      <Button fx:id="btnDarDeAlta" layoutX="194.0" layoutY="544.0" mnemonicParsing="false" onAction="#darDeAlta" prefHeight="39.0" prefWidth="183.0" style="-fx-background-color: #f5c255; -fx-border-radius: 30; -fx-border-width: 2; -fx-background-radius: 30;" text="Dar de alta" textAlignment="CENTER" />
+      <Label layoutX="43.0" layoutY="195.0" prefHeight="35.0" prefWidth="125.0" text="Descripción:" textFill="#242729" underline="true">
          <font>
             <Font size="18.0" />
          </font>
       </Label>
-      <ImageView fitHeight="53.0" fitWidth="52.0" layoutX="270.0" layoutY="51.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="53.0" fitWidth="52.0" layoutX="112.0" layoutY="61.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../img/informeLbl.png" />
          </image>
       </ImageView>
-      <TextArea fx:id="tfDescripcion" layoutX="153.0" layoutY="230.0" prefHeight="304.0" prefWidth="618.0" style="-fx-background-color: white; -fx-background-radius: 30; -fx-border-radius: 30;" />
-      <ComboBox fx:id="comboBoxFecha" layoutX="565.0" layoutY="137.0" prefHeight="35.0" prefWidth="196.0" style="-fx-background-color: white; -fx-background-radius: 30;" />
-      <TextField fx:id="tfNumeroHoras" layoutX="153.0" layoutY="137.0" prefHeight="35.0" prefWidth="271.0" promptText="Nº horas" style="-fx-background-color: transparent; -fx-border-color: transparent transparent #2196F3 transparent;" />
-      <Button layoutX="847.0" layoutY="14.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="33.0" style="-fx-background-color: transparent;" text="X" textFill="#d6543a">
+      <TextArea fx:id="tfDescripcion" layoutX="40.0" layoutY="230.0" prefHeight="304.0" prefWidth="491.0" style="-fx-background-color: white; -fx-background-radius: 30; -fx-border-radius: 30;" />
+      <ComboBox fx:id="comboBoxFecha" layoutX="316.0" layoutY="155.0" prefHeight="35.0" prefWidth="196.0" style="-fx-background-color: white; -fx-background-radius: 30;" />
+      <TextField fx:id="tfNumeroHoras" layoutX="46.0" layoutY="148.0" prefHeight="35.0" prefWidth="183.0" promptText="Nº horas" style="-fx-background-color: transparent; -fx-border-color: transparent transparent #2196F3 transparent;" />
+      <Button fx:id="cerrarBtn" layoutX="520.0" layoutY="14.0" mnemonicParsing="false" onAction="#cerrar" prefHeight="25.0" prefWidth="33.0" style="-fx-background-color: transparent;" text="X" textFill="#d6543a">
          <font>
             <Font name="System Bold" size="18.0" />
          </font>
