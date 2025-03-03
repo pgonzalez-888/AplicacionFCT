@@ -86,6 +86,26 @@ public class ConsultarRegistroController extends AppController {
 		service = new UsuarioApiServiceApi(cliente);
 
 		comboBoxOpciones.getItems().addAll("Completadas", "Sin completar", "Todas");
+
+		tabla.setRowFactory(tv -> new TableRow<RegistroPractica>() {
+			@Override
+			protected void updateItem(RegistroPractica item, boolean empty) {
+				super.updateItem(item, empty);
+
+				// Si la fila está vacía o no tiene un item, restablece el estilo
+				if (item == null || empty) {
+					setStyle(""); // Restablece cualquier estilo aplicado anteriormente
+				} else {
+					// Si el registro tiene descripción "Vacío", añade la clase "vacio"
+					if ("Vacío".equals(item.getDescripcion())) {
+						getStyleClass().add("vacio");
+					} else {
+						getStyleClass().remove("vacio");
+					}
+				}
+			}
+		});
+
 	}
 
 	@FXML
@@ -179,18 +199,6 @@ public class ConsultarRegistroController extends AppController {
 				}
 			}
 
-			// Configuración de la RowFactory para cambiar el color de las filas "vacías"
-			tabla.setRowFactory(tv -> {
-				TableRow<RegistroPractica> row = new TableRow<>();
-				row.itemProperty().addListener((obs, oldItem, newItem) -> {
-					if (newItem != null && newItem.getDescripcion().equals("Vacío")) {
-						row.setStyle("-fx-background-color: #f5c255;");
-					} else {
-						row.setStyle("-fx-background-color: white;");
-					}
-				});
-				return row;
-			});
 			// Actualizar la tabla con los datos obtenidos (registros existentes + registros
 			// vacíos)
 			datos.setAll(registrosTemporales);
@@ -211,7 +219,9 @@ public class ConsultarRegistroController extends AppController {
 	@FXML
 	void verDetalle(MouseEvent event) {
 		RegistroPractica registroSeleccionado = tabla.getSelectionModel().getSelectedItem();
-		if (registroSeleccionado != null) {
+		if (registroSeleccionado.getDescripcion().equals("Vacío")) {
+			lanzarError("Este registro está vacío");
+		} else {
 			// Cambiar la pantalla y pasar el parámetro
 			System.out.println(registroSeleccionado);
 			addParam("registro", registroSeleccionado); // Pasar el registro
