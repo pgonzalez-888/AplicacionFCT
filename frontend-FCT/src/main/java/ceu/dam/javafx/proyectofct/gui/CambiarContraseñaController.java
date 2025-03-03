@@ -1,5 +1,6 @@
 package ceu.dam.javafx.proyectofct.gui;
 
+import org.openapitools.client.ApiClient;
 import org.openapitools.client.ApiException;
 import org.openapitools.client.api.UsuarioApiServiceApi;
 import org.openapitools.client.model.Usuario;
@@ -30,7 +31,17 @@ public class CambiarContraseñaController extends AppController {
 	private PasswordField repeatNewPassPf;
 
 	public void initialize() {
-		usuario = (Usuario) getParam("usuario");
+		//usuario = (Usuario) getParam("usuario");
+		ApiClient cliente = new ApiClient();
+		cliente.setApiKey("javiylasardillas");
+		cliente.setBasePath("http://localhost:8080");
+		service = new UsuarioApiServiceApi(cliente);
+		try {
+			usuario = service.login("geronimo", "caca");
+		} catch (ApiException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 	
 	@FXML

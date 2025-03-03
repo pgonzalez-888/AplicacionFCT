@@ -3,6 +3,7 @@ package ceu.dam.javafx.proyectofct.gui;
 import java.time.LocalDate;
 import java.util.List;
 
+import org.openapitools.client.ApiClient;
 import org.openapitools.client.ApiException;
 import org.openapitools.client.api.UsuarioApiServiceApi;
 import org.openapitools.client.model.Fecha;
@@ -42,6 +43,13 @@ public class DarAltaController extends AppController {
 
 	public void initialize() {
 		usuario = (Usuario) getParam("usuario");
+
+
+
+		ApiClient cliente = new ApiClient();
+		cliente.setApiKey("javiylasardillas");
+		cliente.setBasePath("http://localhost:8080");
+		service = new UsuarioApiServiceApi(cliente);
 
 		try {
 			List<RegistroPractica> registros = service.consultarRegistros(usuario.getId(), LocalDate.of(01, 01, 2000),
