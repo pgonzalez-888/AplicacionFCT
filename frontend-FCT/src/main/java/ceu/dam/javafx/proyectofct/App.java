@@ -21,7 +21,7 @@ public class App extends Application {
 		primaryStage.setWidth(877);  // Ancho
 	    primaryStage.setHeight(643); // Alto
 	    
-		controller.changeScene(AppController.FXML_CON_MENU);
+		controller.changeScene(AppController.FXML_LOGIN);
 		primaryStage.initStyle(StageStyle.UNDECORATED);
 		primaryStage.show();
 
