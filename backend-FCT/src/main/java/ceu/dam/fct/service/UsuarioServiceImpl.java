@@ -166,6 +166,11 @@ public class UsuarioServiceImpl implements UsuarioService {
 		log.info("Registros obtenidos con éxito para el usuario con ID " + usuarioId);
 		return registros;
 	}
+	
+	@Override
+	public List<Fecha> consultarFechas(){
+		return fechaRepository.findAll();
+	}
 
 	@Override
 	public void altaRegistroPractica(Long usuarioId, Long fechaId, Integer horas, String detalle)

@@ -14,6 +14,7 @@
 package org.openapitools.client.api;
 
 import org.openapitools.client.ApiException;
+import org.openapitools.client.model.Fecha;
 import java.time.LocalDate;
 import org.openapitools.client.model.RegistroPractica;
 import org.openapitools.client.model.Usuario;
@@ -78,6 +79,19 @@ public class UsuarioApiServiceApiTest {
         String antiguaContrasena = null;
         String nuevaContrasena = null;
         api.cambiarContrasena(id, antiguaContrasena, nuevaContrasena);
+        // TODO: test validations
+    }
+
+    /**
+     * Consultar fechas existentes
+     *
+     * Consultar fechas que existan en la base de datos
+     *
+     * @throws ApiException if the Api call fails
+     */
+    @Test
+    public void consultarFechasTest() throws ApiException {
+        List<Fecha> response = api.consultarFechas();
         // TODO: test validations
     }
 

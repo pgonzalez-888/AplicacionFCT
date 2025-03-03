@@ -2,9 +2,9 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <groupId>org.openapitools</groupId>
-    <artifactId>cliente-api-FCT</artifactId>
+    <artifactId>cliente-api-fct</artifactId>
     <packaging>jar</packaging>
-    <name>cliente-api-FCT</name>
+    <name>cliente-api-fct</name>
     <version>v0</version>
     <url>https://github.com/openapitools/openapi-generator</url>
     <description>OpenAPI Java</description>
