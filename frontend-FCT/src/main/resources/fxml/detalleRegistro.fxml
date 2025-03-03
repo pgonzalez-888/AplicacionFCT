@@ -24,13 +24,21 @@
             <Font name="System Italic" size="18.0" />
          </font>
       </Label>
-      <Label fx:id="fechaRegistroLbl" layoutX="344.0" layoutY="135.0" prefHeight="27.0" prefWidth="174.0" style="-fx-background-color: white; -fx-background-radius: 30; -fx-alignment: center; -fx-border-radius: 30;">
+      <Label fx:id="fechaRegistroLbl" layoutX="344.0" layoutY="135.0" prefHeight="27.0" prefWidth="174.0" style="-fx-text-fill: #FFC107; -fx-background-color: white; -fx-background-radius: 30; -fx-alignment: center; -fx-border-radius: 30;">
          <font>
-            <Font name="System Bold Italic" size="12.0" />
+            <Font name="System Bold Italic" size="18.0" />
          </font>
       </Label>
-      <Label fx:id="numeroHorasLbl" layoutX="152.0" layoutY="135.0" prefHeight="27.0" prefWidth="125.0" style="-fx-background-color: white; -fx-background-radius: 30; -fx-alignment: center; -fx-border-radius: 30;" />
-      <Label fx:id="descripcionLbl" layoutX="73.0" layoutY="239.0" prefHeight="284.0" prefWidth="441.0" style="-fx-text-fill: #FFC107; -fx-background-color: white; -fx-background-radius: 30; -fx-border-radius: 30;" />
+      <Label fx:id="numeroHorasLbl" layoutX="152.0" layoutY="135.0" prefHeight="27.0" prefWidth="125.0" style="-fx-text-fill: #FFC107; -fx-background-color: white; -fx-background-radius: 30; -fx-alignment: center; -fx-border-radius: 30;">
+         <font>
+            <Font name="System Bold Italic" size="18.0" />
+         </font>
+      </Label>
+      <Label fx:id="descripcionLbl" layoutX="73.0" layoutY="239.0" prefHeight="284.0" prefWidth="441.0" style="-fx-text-fill: #FFC107; -fx-background-color: white; -fx-background-radius: 30; -fx-alignment: center; -fx-border-radius: 30;">
+         <font>
+            <Font name="System Bold Italic" size="18.0" />
+         </font>
+      </Label>
       <Button fx:id="btnBorrarRegistro" layoutX="257.0" layoutY="537.0" mnemonicParsing="false" onAction="#borrarRegistro" prefHeight="39.0" prefWidth="174.0" style="-fx-background-color: #d6543a; -fx-border-radius: 30; -fx-border-width: 2; -fx-background-radius: 30;" text="Borrar Registro" textAlignment="CENTER" />
       <Label layoutX="73.0" layoutY="204.0" prefHeight="35.0" prefWidth="125.0" text="Descripción:" textFill="#242729" underline="true">
          <font>

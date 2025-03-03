@@ -2,6 +2,7 @@ package ceu.dam.javafx.proyectofct.gui;
 
 import java.util.Optional;
 
+import org.openapitools.client.ApiClient;
 import org.openapitools.client.ApiException;
 import org.openapitools.client.api.UsuarioApiServiceApi;
 import org.openapitools.client.model.RegistroPractica;
@@ -41,12 +42,17 @@ public class DetalleRegistroController extends AppController {
 	private Label numeroHorasLbl;
 
 	public void initialize() {
+		ApiClient cliente = new ApiClient();
+		cliente.setApiKey("javiylasardillas");
+		cliente.setBasePath("http://localhost:8080");
+		service = new UsuarioApiServiceApi(cliente);
+
 		user = new Usuario();
 		user = (Usuario) getParam("usuario");
 		registro = new RegistroPractica();
 		registro = (RegistroPractica) getParam("registro");
 		descripcionLbl.setText(descripcionLbl.getText() + registro.getDescripcion());
-		fechaRegistroLbl.setText(fechaRegistroLbl.getText() + registro.getFecha().toString());
+		fechaRegistroLbl.setText(fechaRegistroLbl.getText() + registro.getFecha().getFecha().toString());
 		numeroHorasLbl.setText(numeroHorasLbl.getText() + registro.getHoras().toString());
 
 	}
@@ -61,6 +67,10 @@ public class DetalleRegistroController extends AppController {
 			Optional<ButtonType> respuesta = pregunta.showAndWait();
 			if (respuesta.get() == ButtonType.OK) {
 				service.borrarRegistroPractica(user.getId(), registro.getId());
+				
+				Parent nuevaVista = loadScene(FXML_CONSULTAR_REGISTRO);
+				panel.getChildren().setAll(new Pane());
+				panel.getChildren().setAll(nuevaVista);
 			}
 		} catch (ApiException e) {
 			lanzarError(e.getMessage());
@@ -71,7 +81,6 @@ public class DetalleRegistroController extends AppController {
 	@FXML
 	void cerrar(ActionEvent event) {
 		salir(event);
-
 	}
 
 	@FXML

@@ -86,6 +86,7 @@ public class DarAltaController extends AppController {
 		registro.setDescripcion(tfDescripcion.getText());
 		registro.setFecha(fecha);
 		registro.setHoras(Integer.valueOf(tfNumeroHoras.getText()));
+		
 	}
 
 	@FXML
