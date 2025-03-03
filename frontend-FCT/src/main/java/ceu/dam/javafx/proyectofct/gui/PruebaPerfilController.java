@@ -5,23 +5,28 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 
-public class ResumenHorasController extends AppController {
-
+public class PruebaPerfilController {
 	@FXML
 	private Button btnConsultarDetalles;
+
+	@FXML
+	private Label porcentajeLbl;
 
 	@FXML
 	private Label totalHorasLbl;
 
 	@FXML
-	private Label totalHorasLbl1;
+	private Label totalHorasPendientesLbl;
 
 	@FXML
-	private Label totalHorasLbl11;
+	private Label totalHorasRealizadasLbl;
 
 	@FXML
 	void irADetallesRegistro(ActionEvent event) {
-
+		
 	}
-
+	
+	public void initialize() {
+		
+	}
 }

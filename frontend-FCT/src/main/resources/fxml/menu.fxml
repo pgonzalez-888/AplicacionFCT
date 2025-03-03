@@ -4,13 +4,13 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
 <Pane fx:id="panelPrincipal" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="653.0" prefWidth="897.0" style="-fx-background-color: #0092D2; -fx-background-radius: 15; -fx-border-radius: 15; -fx-border-width: 2;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ceu.dam.javafx.proyectofct.gui.MenuController">
    <children>
-      <Pane fx:id="panelCambiante" layoutX="291.0" prefHeight="653.0" prefWidth="609.0" style="-fx-background-color: #eceef1; -fx-background-radius: 15;" />
-      <Pane fx:id="menuPanel" layoutX="14.0" layoutY="10.0" prefHeight="634.0" prefWidth="265.0" style="-fx-background-color: #eceef1; -fx-background-radius: 15;">
+      <Pane fx:id="menuPanel" layoutX="14.0" layoutY="10.0" prefHeight="623.0" prefWidth="265.0" style="-fx-background-color: #eceef1; -fx-background-radius: 15;">
          <children>
             <ImageView fitHeight="134.0" fitWidth="147.0" layoutX="65.0" layoutY="23.0" pickOnBounds="true" preserveRatio="true">
                <image>
@@ -48,6 +48,6 @@
             <Button fx:id="btnCerrarSesion" layoutX="46.0" layoutY="572.0" mnemonicParsing="false" onAction="#cerrarSesion" prefHeight="36.0" prefWidth="157.0" style="-fx-background-color: #d6733d; -fx-background-radius: 30;" text="Cerrar sesión" textAlignment="CENTER" />
          </children>
       </Pane>
-      <Button fx:id="btnOcultarMenu" layoutX="275.0" layoutY="312.0" mnemonicParsing="false" onAction="#ocultarMenu" prefHeight="25.0" prefWidth="35.0" style="-fx-background-color: #d6733d; -fx-background-radius: 30;" text="&lt;" textAlignment="CENTER" />
+      <BorderPane fx:id="panelCambiante" layoutX="287.0" layoutY="9.0" prefHeight="629.0" prefWidth="590.0" />
    </children>
 </Pane>
