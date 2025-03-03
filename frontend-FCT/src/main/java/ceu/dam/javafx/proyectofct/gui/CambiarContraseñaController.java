@@ -1,5 +1,6 @@
 package ceu.dam.javafx.proyectofct.gui;
 
+import org.apache.commons.codec.digest.DigestUtils;
 import org.openapitools.client.ApiClient;
 import org.openapitools.client.ApiException;
 import org.openapitools.client.api.UsuarioApiServiceApi;
@@ -40,7 +41,9 @@ public class CambiarContraseñaController extends AppController {
 	@FXML
 	void cambiarContraseña(ActionEvent event) {
 		try {
-			service.cambiarContrasena(usuario.getId(), oldPassPf.getText(), newPassPf.getText());
+			String passwordCipherOld = DigestUtils.sha256Hex(oldPassPf.getText());
+			String passwordCipherNew = DigestUtils.sha256Hex(newPassPf.getText());
+			service.cambiarContrasena(usuario.getId(), passwordCipherOld, passwordCipherNew);
 		} catch (ApiException e) {
 			lanzarError(e.getMessage());
 		}

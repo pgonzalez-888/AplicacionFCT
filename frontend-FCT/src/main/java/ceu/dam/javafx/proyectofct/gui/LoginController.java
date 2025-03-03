@@ -1,5 +1,6 @@
 package ceu.dam.javafx.proyectofct.gui;
 
+import org.apache.commons.codec.digest.DigestUtils;
 import org.openapitools.client.ApiClient;
 import org.openapitools.client.ApiException;
 import org.openapitools.client.api.UsuarioApiServiceApi;
@@ -15,14 +16,13 @@ import javafx.scene.control.Alert.AlertType;
 
 public class LoginController extends AppController {
 
-	
 	private UsuarioApiServiceApi service;
 
 	@FXML
 	private PasswordField PasswordPassField;
-	
-    @FXML
-    private Button cerrarBtn;
+
+	@FXML
+	private Button cerrarBtn;
 
 	@FXML
 	private Button btnIniciarSesion;
@@ -33,20 +33,19 @@ public class LoginController extends AppController {
 	@FXML
 	void login(ActionEvent event) {
 		try {
-			Usuario usuario = service.login(tfUsername.getText(), PasswordPassField.getText());
+			String passwordCipher = DigestUtils.sha256Hex(PasswordPassField.getText());
+			Usuario usuario = service.login(tfUsername.getText(), passwordCipher);
 			addParam("usuario", usuario);
 			changeScene(FXML_CON_MENU);
 		} catch (ApiException e) {
 			lanzarError(e.getMessage());
 		}
 	}
-	
-	  @FXML
-	    void cerrarAplicacion(ActionEvent event) {
-		  salir(event);
-	    }
 
-	
+	@FXML
+	void cerrarAplicacion(ActionEvent event) {
+		salir(event);
+	}
 
 	public void initialize() {
 		ApiClient cliente = new ApiClient();
